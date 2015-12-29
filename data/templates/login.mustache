@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Login</title>
+	</head>
+	<body style="max-width: 800px; margin:auto;">
+		<h1>Login</h1>
+		<p><b>Please enter username and password below.</b></p>
+		{{#bad}}<p><b>Bad username and/or password!</b></p>{{/bad}}
+		<form method="post">
+			<p>
+			Username: <input type="text" name="username">
+			</p>
+			<p>
+			Password: <input type="password" name="password">
+			</p>
+			<input type="submit" value="Check credentials">
+		</form>
+	</body>
+</html>
