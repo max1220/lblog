@@ -1,12 +1,5 @@
 bklgo32 <-- Arbeitstitel
 
-
-
-eigentliche blog-site statisch!?
- [feature] Gerendert aus JSON bei änderung
- [  tbd  ]Templates in mustache?
- [feature]Ausgeliefert via custom turbo server
-
 Author-ID-Auflösung:
 Jder author hat:
  - Profil Seite
@@ -15,18 +8,11 @@ Jder author hat:
  - link zu dingen
 
 turbo server
- [ ] Admin-Interface -> module
-     - bei neuem blog-post etc. wird die json neu generiert, und der blog-rendere aufgerufen.
+ [ ] Admin-Interface -> modul   - bei neuem blog-post etc. wird die json neu generiert, und der blog-rendere aufgerufen.
  [ ] RSS-Feed -> module
  [ ] JSON-API -> module/statisch verlinkt zu data/blog(s.unten)
  [x] Liefert statische dinge statisch aus
  [x] Liest liste von dynamischen seiten aus ordner aus.
-
-
--- accute TODO
- * Figure out authentication scheme
-  * Implement it!
- * create reader that
 
 
 
