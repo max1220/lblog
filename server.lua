@@ -22,19 +22,23 @@ posts = json.decode(readFile(config.posts_path))
 
 
 -- Load Handlers & ioloop callbacks from files in config.modules_dir
-local handlers = {}
+local toload = {}
 for file in lfs.dir(config.modules_dir) do
 	if file:endsWith(".lua") then
-		local ok, mod = pcall(dofile, config.modules_dir .. file)
-		if not ok then
-			eexit("Can't load module: " .. file)
+		toload[#toload + 1] = file
+	end
+end
+table.sort(toload)
+for _,path in ipairs(toload) do
+	local ok, mod = pcall(dofile, config.modules_dir .. file)
+	if not ok then
+		eexit("Can't load module: " .. file)
+	end
+	if not mod.disables then
+		for _,handler in pairs(mod.handlers) do
+			handlers[#handlers + 1] = handler
 		end
-		if not mod.disables then
-			for _,handler in pairs(mod.handlers) do
-				handlers[#handlers + 1] = handler
-			end
-			print("Loaded module: " .. mod.title)
-		end
+		print("Loaded module: " .. mod.title)
 	end
 end
 
