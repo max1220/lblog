@@ -1,11 +1,10 @@
-#!/usr/bin/luajit
 TURBO_SSL = true
 turbo = require("turbo")
 lfs = require("lfs")
 json = require("cjson")
 config = require("config")
 utils = require("utils")
-
+statics = require("statics")
 
 -- Get the crrent ioloop
 ioloop = turbo.ioloop.instance()

@@ -1,15 +1,9 @@
 local turbo = require("turbo")
 
+
+
 local ips = {}
 
-function checkAuth(_self)
-	local ok, username = pcall(_self.get_secure_cookie, _self, "logged_in")
-	if ok then
-		return username
-	else
-		return nil
-	end
-end
 
 
 local loginHandler = class("loginHandler", turbo.web.RequestHandler)
@@ -53,7 +47,7 @@ local mod = {
 	title = "authentication",
 	desc = "Provides authentication functionality",
 	handlers = {
-		{"/login", loginHandler}
+		{"/login", loginHandler} -- Note: You shouldn't change this(Without a redirection), since other modules might point to this.
 	}
 }
 return mod

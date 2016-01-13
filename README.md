@@ -26,10 +26,10 @@ turbo server
 
 	 Field name   | type   | desv
 	--------------|--------|---------------
-	 title        | string | 
+	 title        | string |
 	 created      | number | unix timestamp
 	 content_type | string | markdown or raw, ...
-	 content      | string | 
+	 content      | string |
 	 authors      | table  | list of author ids
 	 tags         | table  | list of tags
 	 visible      | bool   | is the post shown per default?
@@ -45,6 +45,7 @@ turbo server
 	-----------------|-----------------
 	./server.lua     | Main Server Module
 	./config.lua     | Global config
+  ./statics.lua    | Unconfigurable static values
 	./generate.lua   | Exports the static part of the generator
 	./utils.lua      | Generic nutz & boltz
 	./add*.lua       | Adds a *

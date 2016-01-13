@@ -1,11 +1,15 @@
 function string.endsWith(str1, str2)
 	-- checks if a string ends with another.
 	-- You can use this like ("abcd").endsWith("cd") -> true
+
 	return str1:sub(-#str2) == str2
 end
 
+
+
 function eexit(msg)
 	-- exits with an optional error message
+
 	print("An error occured")
 	if msg then
 		print("Error was: " .. tostring(msg))
@@ -13,9 +17,12 @@ function eexit(msg)
 	os.exit(1)
 end
 
+
+
 function getInput(question, default)
 	-- Aks the user for input on the specified question and returns it.
 	-- loops until the user inputet something or default if it's is specified
+
 	io.write(question or "", "> ")
 	while true do
 		local input = io.read("*l")
@@ -31,10 +38,13 @@ function getInput(question, default)
 	end
 end
 
+
+
 function readDelimList(str, delim)
 	-- Splits a list into substrings by delimiter-
 	-- for example for a CSV use t = readDelimList("hello,world", ",")
 	-- t[1] = "hello", t[2] = "world"
+
 	local list = {}
 	for match in str:gmatch("(.-)" .. delim) do
 		list[#list + 1] = match
@@ -42,8 +52,11 @@ function readDelimList(str, delim)
 	return list
 end
 
+
+
 function readFile(path)
 	-- reads a file by path, returns it as a string or nil
+
 	local f = io.open(path, "r")
 	if f then
 		local ret = f:read("*a")
@@ -54,8 +67,11 @@ function readFile(path)
 	end
 end
 
+
+
 function writeFile(path, data)
 	-- writes a string to a file
+
 	local f = io.open(path, "w")
 	if f then
 		f:write(data)
@@ -66,9 +82,12 @@ function writeFile(path, data)
 	end
 end
 
+
+
 function randString(len)
-	local len = len or 32
 	-- Generates a random string of lenght len(default 32)
+
+	local len = len or 32
 	local ret = {}
 	local char = string.char
 	local rand = math.random
@@ -77,6 +96,8 @@ function randString(len)
 	end
 	return table.concat(ret)
 end
+
+
 
 function addPost(args)
 	-- Adds a post, returns post ID
@@ -99,8 +120,11 @@ function addPost(args)
 	return postID
 end
 
+
+
 function syncPostsRefs()
 	-- Update references by posts
+
 	references = {}
 	for postID, post in pairs(posts) do
 		for k, v in pairs(post) do
@@ -122,8 +146,11 @@ function syncPostsRefs()
 	writeFile(config.references_path, json.encode(references))
 end
 
+
+
 function isList(tbl)
 	-- Checks if a list only contains numeric indexes
+
 	for key in pairs(tbl) do
 		if not type(key) == "number" then
 			return false
@@ -132,8 +159,11 @@ function isList(tbl)
 	return true
 end
 
+
+
 function dump(this, tbl, indent)
 	-- Dumps a table
+
 	local indent = indent or 0
 	for k,v in pairs(tbl) do
 		if type(v) == "table" then
@@ -143,4 +173,27 @@ function dump(this, tbl, indent)
 			io.write(("\t"):rep(indent), tostring(k), ":\t", tostring(v), "\n")
 		end
 	end
+end
+
+
+
+function checkAuth(_self)
+	local ok, username = pcall(_self.get_secure_cookie, _self, "logged_in")
+	if ok then
+		return username
+	else
+		return nil
+	end
+end
+
+
+
+function selectFrom(from, value)
+	-- Checks if value is present in the list from, then returns the value, or false if not
+	for k,v in pairs(from) do
+		if v == value then
+			return value
+		end
+	end
+	return false
 end
